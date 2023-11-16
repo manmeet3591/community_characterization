@@ -65,15 +65,28 @@ def display_ndbi_difference(year1, year2):
     # Ensure ndbi_diff is a single-band image
     ndbi_diff = ndbi_diff.select('NDBI')  # Replace 'NDBI' with the correct band name if different
 
+    # # Create an interactive map
+    # Map = geemap.Map()
+    # Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
+    
+    # # Add colorbar
+    # Map.add_colorbar(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
+
+    # def display_ndbi_difference(year1, year2):
+    # # ... [previous code] ...
+
     # Create an interactive map
     Map = geemap.Map()
     Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
     
-    # Add colorbar
-    Map.add_colorbar(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
+    # Add colorbar with a correct argument
+    Map.add_colorbar(cmap='coolwarm', vmin=-100, vmax=100, caption='NDBI Difference (%)')  # adjust cmap as needed
 
     # Display the map
     return Map
+
+    # # Display the map
+    # return Map
 
 # In your Streamlit UI
 if st.button('Show NDBI Difference Map'):
