@@ -61,7 +61,7 @@ from io import BytesIO
 
 def create_colorbar_image(min_val, max_val, colors, file_name='colorbar.png'):
     # Create a figure and a set of subplots
-    fig, ax = plt.subplots(figsize=(6, 1))
+    fig, ax = plt.subplots(figsize=(6, 0.4))
 
     # Define the colormap and normalize
     cmap = mcolors.LinearSegmentedColormap.from_list("", colors)
