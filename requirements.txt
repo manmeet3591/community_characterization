@@ -3,4 +3,4 @@ earthengine-api==0.1.374  # As of my last update, you might want to check for th
 folium==0.12.1  # As of my last update, you might want to check for the latest version.
 streamlit-folium==0.3.0  # As of my last update, you might want to check for the latest version.
 folium==0.12.1
-geemap
+geemap=0.29.5
