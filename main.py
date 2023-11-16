@@ -41,14 +41,14 @@ st.title("Yearly NDBI Analysis over Nigeria using Sentinel-2C Data")
 start_year = st.sidebar.selectbox("Select Start Year", list(range(2017, datetime.now().year)), index=0)
 end_year = st.sidebar.selectbox("Select End Year", list(range(2017, datetime.now().year + 1)), index=1)
 
-# Compute NDBI and display map
-if st.button('Show NDBI Map'):
-    # Loop through each year and compute average NDBI
-    for year in range(start_year, end_year + 1):
-        image = load_process_images_for_year(year)
-        st.write(f"NDBI for the year {year}")
-        st_folium_map = display_map(image)
-        folium_static(st_folium_map)
+# # Compute NDBI and display map
+# if st.button('Show NDBI Map'):
+#     # Loop through each year and compute average NDBI
+#     for year in range(start_year, end_year + 1):
+#         image = load_process_images_for_year(year)
+#         st.write(f"NDBI for the year {year}")
+#         st_folium_map = display_map(image)
+#         folium_static(st_folium_map)
 
 import geemap.eefolium as geemap
 import ee
