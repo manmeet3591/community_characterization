@@ -1,10 +1,14 @@
-import streamlit as st
+import os
+import json
 import ee
+import streamlit as st
+import datetime
+
 import folium
+from streamlit_folium import folium_static
+
 from datetime import datetime, timedelta
 
-# Initialize the Earth Engine module.
-from streamlit_folium import folium_static
 
 # Get the environment variable or default to an empty string
 service_account_key_str = os.environ.get('GEE_SERVICE_ACCOUNT_KEY', '')
