@@ -96,7 +96,7 @@ def display_ndbi_difference(year1, year2):
 
     # # Create an interactive map
     # Map = geemap.Map()
-    # Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red'], 'opacity': 0.7}, 'NDBI Difference')
+    # Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red'], 'opacity': 0.4}, 'NDBI Difference')
     
     # # Add colorbar
     # Map.add_colorbar(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
