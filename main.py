@@ -54,6 +54,34 @@ end_year = st.sidebar.selectbox("Select End Year", list(range(2017, datetime.now
 import geemap
 import ee
 
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+from io import BytesIO
+
+def create_colorbar_image(min_val, max_val, colors, file_name='colorbar.png'):
+    # Create a figure and a set of subplots
+    fig, ax = plt.subplots(figsize=(6, 1))
+
+    # Define the colormap and normalize
+    cmap = mcolors.LinearSegmentedColormap.from_list("", colors)
+    norm = mcolors.Normalize(vmin=min_val, vmax=max_val)
+
+    # Create a colorbar
+    cbar = plt.colorbar(mcolors.ColorbarBase(ax, cmap=cmap, norm=norm, orientation='horizontal'))
+
+    # Save the colorbar to a BytesIO object
+    buf = BytesIO()
+    plt.savefig(buf, format='png', bbox_inches='tight')
+    buf.seek(0)
+
+    # Save the colorbar as an image file
+    with open(file_name, 'wb') as f:
+        f.write(buf.getvalue())
+
+    plt.close(fig)
+
+
+
 def display_ndbi_difference(year1, year2):
     # Load and process images for the specified years
     image1 = load_process_images_for_year(year1)
@@ -96,5 +124,10 @@ def display_ndbi_difference(year1, year2):
 if st.button('Show NDBI Difference Map'):
     # Assuming start_year and end_year are selected by the user
     Map = display_ndbi_difference(start_year, end_year)
+    create_colorbar_image(-100, 100, ['blue', 'white', 'red'])
+
+    # # Display the map
+    # Map.to_streamlit()
     Map.to_streamlit()
+    st.image('colorbar.png', caption='NDBI Difference (%)')
 
