@@ -49,3 +49,32 @@ if st.button('Show NDBI Map'):
         st.write(f"NDBI for the year {year}")
         st_folium_map = display_map(image)
         folium_static(st_folium_map)
+
+import geemap.eefolium as geemap
+import ee
+
+# Example function to compute and display NDBI difference
+def display_ndbi_difference(year1, year2):
+    # Load and process images for the specified years
+    image1 = load_process_images_for_year(year1)
+    image2 = load_process_images_for_year(year2)
+
+    # Compute the difference and convert to percentage
+    ndbi_diff = image2.subtract(image1).divide(image1).multiply(100)
+
+    # Create an interactive map
+    Map = geemap.Map()
+    Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
+    
+    # Add colorbar
+    Map.add_colorbar(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
+
+    # Display the map
+    return Map
+
+# In your Streamlit UI
+if st.button('Show NDBI Difference Map'):
+    # Assuming start_year and end_year are selected by the user
+    Map = display_ndbi_difference(start_year, end_year)
+    Map.to_streamlit()
+
