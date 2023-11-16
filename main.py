@@ -35,7 +35,7 @@ def display_map(image, zoom_start=6):
     return map
 
 # Streamlit UI
-st.title("Yearly NDBI Analysis over Nigeria using Sentinel-2C Data")
+st.title("Number of new buildings or building growth using Normalized Difference Built-Up Index (NDBI)")
 
 # Sidebar for year selection
 start_year = st.sidebar.selectbox("Select Start Year", list(range(2017, datetime.now().year)), index=0)
@@ -122,7 +122,7 @@ def display_ndbi_difference(year1, year2):
     # return Map
 
 # In your Streamlit UI
-if st.button('Show NDBI Difference Map'):
+if st.button('Show building growth'):
     # Assuming start_year and end_year are selected by the user
     Map = display_ndbi_difference(start_year, end_year)
     create_colorbar_image(-100, 100, ['blue', 'white', 'red'])
@@ -130,5 +130,5 @@ if st.button('Show NDBI Difference Map'):
     # # Display the map
     # Map.to_streamlit()
     Map.to_streamlit()
-    st.image('colorbar.png', caption='NDBI Difference (%)')
+    st.image('colorbar.png', caption='Building growth (%)')
 
