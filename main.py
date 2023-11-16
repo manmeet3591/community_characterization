@@ -50,7 +50,8 @@ end_year = st.sidebar.selectbox("Select End Year", list(range(2017, datetime.now
 #         st_folium_map = display_map(image)
 #         folium_static(st_folium_map)
 
-import geemap.eefolium as geemap
+# import geemap.eefolium as geemap
+from geemap import eefolium as geem
 import ee
 
 # Example function to compute and display NDBI difference
@@ -63,7 +64,8 @@ def display_ndbi_difference(year1, year2):
     ndbi_diff = image2.subtract(image1).divide(image1).multiply(100)
 
     # Create an interactive map
-    Map = geemap.Map()
+    #Map = geemap.Map()
+    Map = geem.Map()
     Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
     
     # Add colorbar
