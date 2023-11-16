@@ -54,7 +54,6 @@ end_year = st.sidebar.selectbox("Select End Year", list(range(2017, datetime.now
 import geemap
 import ee
 
-# Example function to compute and display NDBI difference
 def display_ndbi_difference(year1, year2):
     # Load and process images for the specified years
     image1 = load_process_images_for_year(year1)
@@ -63,8 +62,10 @@ def display_ndbi_difference(year1, year2):
     # Compute the difference and convert to percentage
     ndbi_diff = image2.subtract(image1).divide(image1).multiply(100)
 
+    # Ensure ndbi_diff is a single-band image
+    ndbi_diff = ndbi_diff.select('NDBI')  # Replace 'NDBI' with the correct band name if different
+
     # Create an interactive map
-    #Map = geemap.Map()
     Map = geemap.Map()
     Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
     
