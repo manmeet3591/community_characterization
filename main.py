@@ -56,6 +56,7 @@ import ee
 
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+from matplotlib.colorbar import ColorbarBase
 from io import BytesIO
 
 def create_colorbar_image(min_val, max_val, colors, file_name='colorbar.png'):
@@ -67,7 +68,7 @@ def create_colorbar_image(min_val, max_val, colors, file_name='colorbar.png'):
     norm = mcolors.Normalize(vmin=min_val, vmax=max_val)
 
     # Create a colorbar
-    cbar = plt.colorbar(mcolors.ColorbarBase(ax, cmap=cmap, norm=norm, orientation='horizontal'))
+    cbar = ColorbarBase(ax, cmap=cmap, norm=norm, orientation='horizontal')
 
     # Save the colorbar to a BytesIO object
     buf = BytesIO()
