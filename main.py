@@ -23,7 +23,8 @@ ee.Initialize(credentials)
 
 # Function to compute NDBI
 def compute_NDBI(image):
-    ndbi = image.normalizedDifference(['SWIR1', 'NIR']).rename('NDBI')
+    #ndbi = image.normalizedDifference(['SWIR1', 'NIR']).rename('NDBI')
+    ndbi = image.normalizedDifference(['B11', 'B8']).rename('NDBI')
     return image.addBands(ndbi)
 
 # Function to load and process images
