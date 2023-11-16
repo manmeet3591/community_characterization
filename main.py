@@ -67,7 +67,7 @@ def display_ndbi_difference(year1, year2):
 
     # # Create an interactive map
     # Map = geemap.Map()
-    # Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
+    # Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red'], 'opacity': 0.7}, 'NDBI Difference')
     
     # # Add colorbar
     # Map.add_colorbar(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
@@ -76,11 +76,15 @@ def display_ndbi_difference(year1, year2):
     # # ... [previous code] ...
 
     # Create an interactive map
-    Map = geemap.Map()
-    Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red']}, 'NDBI Difference')
+    Map = geemap.Map(center=[9.0820, 8.6753], zoom=6) 
+    Map.addLayer(ndbi_diff, {'min': -100, 'max': 100, 'palette': ['blue', 'white', 'red'], 'opacity': 0.7}, 'NDBI Difference')
+
+# Add colorbar
+    Map.add_colorbar_branca(colors=['blue', 'white', 'red'], vmin=-100, vmax=100, caption='NDBI Difference (%)')
+
     
-    # Add colorbar with a correct argument
-    Map.add_colorbar(cmap='coolwarm', vmin=-100, vmax=100, caption='NDBI Difference (%)')  # adjust cmap as needed
+    # # Add colorbar with a correct argument
+    # Map.add_colorbar(cmap='coolwarm', vmin=-100, vmax=100, caption='NDBI Difference (%)')  # adjust cmap as needed
 
     # Display the map
     return Map
