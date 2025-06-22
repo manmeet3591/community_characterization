@@ -10,3 +10,4 @@ streamlit-folium==0.3.0
 folium==0.12.1
 geemap==0.20.0
 protobuf==3.20.3
+altair==4.2.2  # 👈 Add this line
